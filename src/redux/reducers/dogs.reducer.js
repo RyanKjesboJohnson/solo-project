@@ -1,7 +1,9 @@
 const dogsReducer = (state = [], action) => {
     switch(action.type) {
-        case 'GET_DOGS':
+        case 'SET_DOGS':
             return action.payload
+        default:
+            return state;
     }
 }
 
