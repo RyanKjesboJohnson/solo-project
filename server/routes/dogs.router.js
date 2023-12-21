@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
     req.body.dog_name,
     req.body.dog_sh_descr,
     req.body.dog_lg_descr,
-    req.body.dog_url
+    req.body.pic_url
 ]
   pool.query(insertNewDogQuery, insertNewDogValues)
     .then(result => {

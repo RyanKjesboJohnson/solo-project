@@ -11,7 +11,7 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
-      <img src="All_Dog_Logo.jpg" alt='All dog rescue logo' />
+      <img src="/images/ADR_logo.png" height={150}  alt='All dog rescue logo' />
       </Link>
 
       <div>

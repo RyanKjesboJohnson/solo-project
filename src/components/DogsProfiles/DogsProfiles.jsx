@@ -17,10 +17,10 @@ export default function DogsProfiles () {
         <ul>
         {dogsArray.map(dog => 
             <li key={dog.id}>
-                {dog.dog_name},
-                {dog.dog_sh_descr},
-                {dog.dog_lg_descr},
-                <img src="{dog.dog_url}"/>
+                <p>{dog.dog_name}</p>
+                <p>{dog.dog_sh_descr}</p>
+                <p>{dog.dog_lg_descr}</p>
+                <p><img src={dog.pic_url}/></p>
 
             </li>)}
         </ul>
