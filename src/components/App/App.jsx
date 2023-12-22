@@ -20,7 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import DogProfiles from '../DogsProfiles/DogProfiles';
-
+import AdminPage from '../AdminPage/AdminPage';
 import './App.css';
 
 function App() {
@@ -72,9 +72,9 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/info"
+            path="/admin"
           >
-            <InfoPage />
+            <AdminPage />
           </ProtectedRoute>
 
           <Route
