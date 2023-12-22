@@ -1,7 +1,9 @@
+import { Grid } from "@mui/material";
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import DogCard from "../DogCard/DogCard";
 
-export default function DogsProfiles () {
+export default function DogProfiles () {
     console.log("inside the DogsProfiles component");
     
     const dispatch = useDispatch();
@@ -13,17 +15,10 @@ export default function DogsProfiles () {
 
 
     return(
-    <>
-        <ul>
+        <Grid container spacing={5}>
         {dogsArray.map(dog => 
-            <li key={dog.id}>
-                <p>{dog.dog_name}</p>
-                <p>{dog.dog_sh_descr}</p>
-                <p>{dog.dog_lg_descr}</p>
-                <p><img src={dog.pic_url}/></p>
-
-            </li>)}
-        </ul>
-    </>
+            <DogCard dogObject={dog} />
+            )}
+        </Grid>
     )
 }

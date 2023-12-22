@@ -19,7 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import DogsProfiles from '../DogsProfiles/DogsProfiles';
+import DogProfiles from '../DogsProfiles/DogProfiles';
 
 import './App.css';
 
@@ -54,7 +54,7 @@ function App() {
             exact
             path="/dogprofiles"
           >
-            <DogsProfiles />
+            <DogProfiles />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
