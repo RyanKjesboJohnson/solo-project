@@ -43,4 +43,53 @@ router.post('/', (req, res) => {
     })
 });
 
+router.put('/:id', (req, res) => {
+  console.log(req.body);
+  const updateDogQuery = `
+    UPDATE "dog_profiles" 
+    SET 
+    "dog_name" = $1, 
+    "dog_sh_descr" = $2, 
+    "dog_lg_descr" = $3, 
+    "pic_url" = $4
+  WHERE "id" = $5
+  `;
+  const updateDogValues = [
+    req.body.dog_name,
+    req.body.dog_sh_descr,
+    req.body.dog_lg_descr,
+    req.body.pic_url,
+    Number(req.params.id)
+]
+  pool.query(updateDogQuery, updateDogValues)
+    .then(result => {
+      console.log('Dog updated')
+      res.sendStatus(200)
+    })
+    .catch(err => {
+        console.log(err);
+        res.sendStatus(500)
+    })
+});
+
+router.delete('/:id', (req, res) => {
+  const deleteDogQuery = `
+  DELETE FROM "dog_profiles"
+  WHERE "id" = $1;
+`;
+  const deleteDogValues = [
+    Number(req.params.id)
+  ]
+
+pool.query(deleteDogQuery, deleteDogValues)
+  .then(result => {
+    console.log('Dog deleted')
+    res.sendStatus(202)
+  })
+  .catch(err => {
+    console.log('ERROR: delete dog', err);
+    res.sendStatus(500)
+  })
+});
+
 module.exports = router;
