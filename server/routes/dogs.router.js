@@ -43,6 +43,7 @@ router.post('/', (req, res) => {
     })
 });
 
+//This route updates a dog profile of the ID sent over in the params
 router.put('/:id', (req, res) => {
   console.log(req.body);
   const updateDogQuery = `
@@ -72,6 +73,7 @@ router.put('/:id', (req, res) => {
     })
 });
 
+//This route deletes a dog profile of the ID sent over in the params
 router.delete('/:id', (req, res) => {
   const deleteDogQuery = `
   DELETE FROM "dog_profiles"
