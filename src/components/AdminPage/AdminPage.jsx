@@ -4,7 +4,6 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -20,8 +19,14 @@ export default function AdminPage () {
       }, []);
 
     const dogs = useSelector(store => (store.dogsReducer))
+    const handleDelete = (id) => {
+        dispatch({ type: 'DELETE_DOG',
+                   payload: id })
+    };
 
     return(
+        <>
+
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
@@ -48,12 +53,13 @@ export default function AdminPage () {
                         <Button variant="contained" color="success">Edit Dog</Button>
                     </TableCell>
                     <TableCell align="right">
-                        <Button variant="outlined" color="error">Delete Dog</Button>
+                        <Button onClick={() => handleDelete(dog.id)} variant="outlined" color="error">Delete Dog</Button>
                     </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
             </TableContainer>
+        </>
           );
 }

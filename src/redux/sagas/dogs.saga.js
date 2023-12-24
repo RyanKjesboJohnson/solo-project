@@ -15,8 +15,19 @@ function* fetchAllDogs() {
     }
   }
 
-  function* dogsSaga() {
-    yield takeLatest('FETCH_ALL_DOGS', fetchAllDogs);
+function* deleteDog(action) {
+    try {
+      const dogID = action.payload;
+      console.log(dogID);
+      yield axios.delete(`/api/dogs/${dogID}`)
+    } catch (error) {
+      console.log('deleteDog error:', error);
+    }
+}
+
+function* dogsSaga() {
+    yield takeLatest('FETCH_ALL_DOGS', fetchAllDogs),
+    yield takeLatest('DELETE_DOG', deleteDog)
   }
 
 export default dogsSaga;
