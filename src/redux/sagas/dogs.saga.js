@@ -2,6 +2,31 @@ import axios from "axios";
 import { takeLatest } from "redux-saga/effects";
 import { put } from "redux-saga/effects";
 
+//This saga function adds a dog to the detabase.
+function* addDog(action){
+  try {
+    const newDog = action.payload;
+    console.log(newDog);
+  } catch(error) {
+    console.log('addDog error:', error);
+  }
+}
+
+//This saga function removes a dog from the database.
+//This is triggered from the Admin page.
+function* deleteDog(action) {
+  try {
+    const dogID = action.payload;
+    console.log(dogID);
+    yield axios.delete(`/api/dogs/${dogID}`)
+  } catch (error) {
+    console.log('deleteDog error:', error);
+  }
+}
+
+//This saga function fetches dogs from the database, and
+//puts them in the dogs reducer.
+//This is triggered as an onEffect of the dog profile page.
 function* fetchAllDogs() {
     try {
       const dogsResponse = yield axios.get('/api/dogs');
@@ -15,19 +40,12 @@ function* fetchAllDogs() {
     }
   }
 
-function* deleteDog(action) {
-    try {
-      const dogID = action.payload;
-      console.log(dogID);
-      yield axios.delete(`/api/dogs/${dogID}`)
-    } catch (error) {
-      console.log('deleteDog error:', error);
-    }
-}
+
 
 function* dogsSaga() {
     yield takeLatest('FETCH_ALL_DOGS', fetchAllDogs),
     yield takeLatest('DELETE_DOG', deleteDog)
+    yield takeLatest('ADD_DOG', addDog)
   }
 
 export default dogsSaga;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -11,8 +11,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useHistory } from 'react-router-dom';
 
 export default function AdminPage () {
+    const history = useHistory();
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch({ type: 'FETCH_ALL_DOGS' });
@@ -22,11 +24,20 @@ export default function AdminPage () {
     const handleDelete = (id) => {
         dispatch({ type: 'DELETE_DOG',
                    payload: id })
+        dispatch({ type: 'FETCH_ALL_DOGS' })
     };
+
+    const addNewDogClick = () => {
+        history.push('/addDog');
+    }
 
     return(
         <>
-
+            <Box>
+                <Button onClick={addNewDogClick}>
+                    Add New Dog
+                </Button>
+            </Box>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>

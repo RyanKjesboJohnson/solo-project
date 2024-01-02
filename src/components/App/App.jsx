@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import DogProfiles from '../DogsProfiles/DogProfiles';
 import AdminPage from '../AdminPage/AdminPage';
 import './App.css';
+import AddDog from '../AddDog/AddDog';
 
 function App() {
   const dispatch = useDispatch();
@@ -76,7 +77,13 @@ function App() {
           >
             <AdminPage />
           </ProtectedRoute>
-
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/addDog"
+          >
+            <AddDog />
+          </ProtectedRoute>
           <Route
             exact
             path="/login"
