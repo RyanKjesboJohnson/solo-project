@@ -5,8 +5,16 @@ import { put } from "redux-saga/effects";
 //This saga function adds a dog to the detabase.
 function* addDog(action){
   try {
-    const newDog = action.payload;
-    console.log(newDog);
+    const headers = {
+      'content-type' : 'multipart/form-data'
+    }
+    const response = yield axios({
+      method: "POST",
+      url: "api/upload",
+      headers: headers,
+      data: action.payload
+    });
+    console.log(action.payload);
   } catch(error) {
     console.log('addDog error:', error);
   }
