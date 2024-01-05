@@ -58,10 +58,10 @@ export default function AdminPage () {
                     <TableCell align="right">{dog.dog_name}</TableCell>
                     <TableCell align="right">{dog.dog_sh_descr}</TableCell>
                     <TableCell align="right">
-                        <Button variant="contained" color="success">Edit Dog</Button>
+                        <Button onClick={() => history.push(`/editDog/${dog.id}`)} variant="contained" color="success">Edit Dog</Button>
                     </TableCell>
                     <TableCell align="right">
-                        <Button onClick={() => handleDelete(dog.id)} variant="outlined" color="error">Delete Dog</Button>
+                        <Button onClick={() => handleDelete(dog.id)} variant="contained" color="error">Delete Dog</Button>
                     </TableCell>
                     </TableRow>
                   ))}

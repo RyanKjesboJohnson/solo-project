@@ -38,22 +38,50 @@ function* deleteDog(action) {
 //puts them in the dogs reducer.
 //This is triggered as an onEffect of the dog profile page.
 function* fetchAllDogs() {
-    try {
-      const dogsResponse = yield axios.get('/api/dogs');
-      yield put({
-        type: 'SET_DOGS',
-        payload: dogsResponse.data
+  try {
+    const dogsResponse = yield axios.get('/api/dogs');
+    yield put({
+      type: 'SET_DOGS',
+      payload: dogsResponse.data
       });
       console.log(dogsResponse.data);
     } catch (error) {
       console.log('fetchAllDogs error:', error);
-    }
   }
+}
 
+//This saga function gets an individual dogs info from the DB.
+//Puts this in the editDog reducer.
+//This is pulled in the editDog function when the page loads.
+function* fetchDog(dogID) {
+  try {
+    const dogsResponse = yield axios.get(`/api/dogs/${dogID}`);
+    yield put({
+      type: 'SET_DOG',
+      payload: dogsResponse.data
+      });
+      console.log(dogsResponse.data);
+  } catch (error) {
+      console.log('fetchAllDogs error:', error);
+  }
+}
+
+// function* updateDog(action) {
+//   try {
+//     const response = yield axios({
+//       method: "PUT",
+//       url: `/api/dogs/${dogID}`,
+
+//     });
+    
+//   }
+
+// }
 
 
 function* dogsSaga() {
     yield takeLatest('FETCH_ALL_DOGS', fetchAllDogs),
+    yield takeLatest('FETCH_DOG', fetchDog)
     yield takeLatest('DELETE_DOG', deleteDog),
     yield takeLatest('ADD_DOG', addDog)
   }

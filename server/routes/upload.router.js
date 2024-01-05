@@ -32,4 +32,34 @@ router.post("/", cloudinaryUpload.single("image"), async (req, res) => {
           });
         });
 
+//This route updates a dog profile of the ID sent over in the params
+router.put('/:id', (req, res) => {
+  console.log(req.body);
+  const updateDogQuery = `
+    UPDATE "dog_profiles" 
+    SET 
+    "dog_name" = $1, 
+    "dog_sh_descr" = $2, 
+    "dog_lg_descr" = $3, 
+    "pic_url" = $4
+  WHERE "id" = $5
+  `;
+  const updateDogValues = [
+    req.body.dog_name,
+    req.body.dog_sh_descr,
+    req.body.dog_lg_descr,
+    req.body.pic_url,
+    Number(req.params.id)
+]
+  pool.query(updateDogQuery, updateDogValues)
+    .then(result => {
+      console.log('Dog updated')
+      res.sendStatus(200)
+    })
+    .catch(err => {
+        console.log(err);
+        res.sendStatus(500)
+    })
+});
+
 module.exports = router;

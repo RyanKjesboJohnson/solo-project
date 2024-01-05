@@ -17,6 +17,25 @@ pool.query(query)
   })
 });
 
+//This route gets an individual dog profile by id
+router.get('/:id', (req, res) => {
+  const query = `
+  SELECT * FROM "dog_profiles"
+  WHERE "id" = $1;
+`;
+  const values = [Number(req.params.id)];
+
+pool.query(query, values)
+  .then(result => {
+    res.send(result.rows[0]);
+    console.log(result.rows[0]);
+  })
+  .catch(err => {
+    console.log('ERROR: Get dog of id', req.params.id, err);
+    res.sendStatus(500)
+  })
+});
+
 //This is the post router to create a new dog
 router.post('/', (req, res) => {
   console.log(req.body);
@@ -36,36 +55,6 @@ router.post('/', (req, res) => {
     .then(result => {
       console.log('New Dog created')
       res.sendStatus(201)
-    })
-    .catch(err => {
-        console.log(err);
-        res.sendStatus(500)
-    })
-});
-
-//This route updates a dog profile of the ID sent over in the params
-router.put('/:id', (req, res) => {
-  console.log(req.body);
-  const updateDogQuery = `
-    UPDATE "dog_profiles" 
-    SET 
-    "dog_name" = $1, 
-    "dog_sh_descr" = $2, 
-    "dog_lg_descr" = $3, 
-    "pic_url" = $4
-  WHERE "id" = $5
-  `;
-  const updateDogValues = [
-    req.body.dog_name,
-    req.body.dog_sh_descr,
-    req.body.dog_lg_descr,
-    req.body.pic_url,
-    Number(req.params.id)
-]
-  pool.query(updateDogQuery, updateDogValues)
-    .then(result => {
-      console.log('Dog updated')
-      res.sendStatus(200)
     })
     .catch(err => {
         console.log(err);
