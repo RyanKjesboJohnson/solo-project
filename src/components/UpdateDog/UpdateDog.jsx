@@ -94,7 +94,7 @@ export default function UpdateDog() {
               <OutlinedInput
                 id="dogShDesc"
                 label="Dog's Short Description"
-                value={dogToUpdate.dog_name || ''}
+                value={dogToUpdate.dog_sh_descr || ''}
                 placeholder="Enter Dog's Short Description"
                 onChange={(event) => setDogShDescInput(event.target.value)}
                 style={{ width: 800 }}
@@ -111,7 +111,7 @@ export default function UpdateDog() {
                 id="dogLgDesc"
                 label="Dog's Long Description"
                 multiline
-                value={dogToUpdate.dog_name || ''}
+                value={dogToUpdate.dog_lg_descr || ''}
                 placeholder="Enter Dog's Long Description"
                 onChange={(event) => setDogLgDescInput(event.target.value)}
                 style={{ width: 800 }}
@@ -121,6 +121,7 @@ export default function UpdateDog() {
           </Grid>
           <Grid item xs={12} sm={3} justifyContent="center">
             <TextField
+              value={dogToUpdate.dog_url || ''}
               type="file"
               name="dog-image"
               onChange={(event) => setDogPhotoInput(event.target.files)}
