@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Button, Typography } from "@mui/material";
-import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -13,6 +12,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useHistory } from 'react-router-dom';
 
+//The AdminPage function is a page only available to logged in users.
+//
 export default function AdminPage () {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -27,14 +28,10 @@ export default function AdminPage () {
         dispatch({ type: 'FETCH_ALL_DOGS' })
     };
 
-    const addNewDogClick = () => {
-        history.push('/addDog');
-    }
-
     return(
         <>
             <Box>
-                <Button onClick={addNewDogClick}>
+                <Button onClick={() => {history.push('/addDog')}}>
                     Add New Dog
                 </Button>
             </Box>

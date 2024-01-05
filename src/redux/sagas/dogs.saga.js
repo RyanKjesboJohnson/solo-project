@@ -3,6 +3,8 @@ import { takeLatest } from "redux-saga/effects";
 import { put } from "redux-saga/effects";
 
 //This saga function adds a dog to the detabase.
+//The header element is used by the cloudinary middleware.
+//This action originates from the add dog page via the admin page.
 function* addDog(action){
   try {
     const headers = {
@@ -52,7 +54,7 @@ function* fetchAllDogs() {
 
 function* dogsSaga() {
     yield takeLatest('FETCH_ALL_DOGS', fetchAllDogs),
-    yield takeLatest('DELETE_DOG', deleteDog)
+    yield takeLatest('DELETE_DOG', deleteDog),
     yield takeLatest('ADD_DOG', addDog)
   }
 

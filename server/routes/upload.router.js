@@ -1,15 +1,13 @@
 const express = require("express");
-// const {
-//   rejectUnauthenticated,
-// } = require("../modules/authentication-middleware");
 const pool = require("../modules/pool");
 const router = express.Router();
 const cloudinaryUpload = require("../modules/cloudinary.config");
 
+//This post route sends a new dog profile to the server.
+//It also injects the cloudinary.config page in as middleware and brings back the file path
 router.post("/", cloudinaryUpload.single("image"), async (req, res) => {
     const imageUrl = req.file.path;
     const dogName = req.body.dogNameInput;
-    // const userId = req.user.id;
     const dogShDesc = req.body.dogShDescInput;
     const dogLgDesc = req.body.dogLgDescInput;
   
@@ -25,6 +23,7 @@ router.post("/", cloudinaryUpload.single("image"), async (req, res) => {
     pool
       .query(dogQuery, dogValues)
           .then((result) => {
+            console.log('New dog profile created:', result);
             res.sendStatus(201)
           })
           .catch((err) => {
