@@ -55,14 +55,13 @@ function* fetchAllDogs() {
 //This is pulled in the editDog function when the page loads.
 function* fetchDog(dogID) {
   try {
-    const dogsResponse = yield axios.get(`/api/dogs/${dogID}`);
+    const dogsResponse = yield axios.get(`/api/dogs/${dogID.payload.id}`);
     yield put({
       type: 'SET_DOG',
       payload: dogsResponse.data
       });
-      console.log(dogsResponse.data);
   } catch (error) {
-      console.log('fetchAllDogs error:', error);
+      console.log('fetchDog error:', error);
   }
 }
 
