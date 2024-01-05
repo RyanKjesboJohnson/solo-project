@@ -15,7 +15,7 @@ export default function DogProfiles () {
 
 
     return(
-        <Grid container spacing={5}>
+        <Grid container spacing={5} sx={{ flexGrow: 1 }}>
         {dogsArray.map(dog => 
             <DogCard dogObject={dog} />
             )}

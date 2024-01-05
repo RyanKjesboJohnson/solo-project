@@ -7,12 +7,11 @@ const router = express.Router();
 const cloudinaryUpload = require("../modules/cloudinary.config");
 
 router.post("/", cloudinaryUpload.single("image"), async (req, res) => {
-    console.log(req);
     const imageUrl = req.file.path;
-    const dogName = req.body.dogNameInput[0];
+    const dogName = req.body.dogNameInput;
     // const userId = req.user.id;
-    const dogShDesc = req.body.dogShDescInput[0];
-    const dogLgDesc = req.body.dogLgDescInput[0];
+    const dogShDesc = req.body.dogShDescInput;
+    const dogLgDesc = req.body.dogLgDescInput;
   
     const dogQuery = `
       INSERT INTO "dog_profiles" 
