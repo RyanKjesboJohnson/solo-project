@@ -1,3 +1,4 @@
+import { Image, Padding } from "@mui/icons-material";
 import {
   Button,
   Grid,
@@ -6,6 +7,7 @@ import {
   FormControl,
   OutlinedInput,
   TextField,
+  CardMedia,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,6 +33,7 @@ export default function UpdateDog() {
       type: "FETCH_DOG",
       payload: params,
     });
+    console.log(dogToUpdate);
   }, [params]);
 
   const handleNameChange = (newDogName) => {
@@ -40,27 +43,44 @@ export default function UpdateDog() {
     })
   }
 
+  const handleShDescrChange = (newShDescr) => {
+    dispatch({
+        type: 'UPDATE_DOG_SH_DESC',
+        payload: newShDescr
+    })
+  }
+
+  const handleLgDescrChange = (newLgDescr) => {
+    dispatch({
+        type: 'UPDATE_DOG_LG_DESC',
+        payload: newLgDescr
+    })
+  }
+
+  const handlePicURL = (newPicURL) => {
+    dispatch({
+        type: 'UPDATE_NAME_URL',
+        payload: newPicURL
+    })
+  }
+
   //This is the event that triggers creating a new dog.
   //First, it appends each local state to the dogForm.
   //Second, it sends dogForm to the saga function.
   //Third, it routes the user back to the admin page.
-//   const updateDog = (event) => {
-//     event.preventDefault();
-//     dogForm.append("image", dogPhotoInput[0]);
-//     dogForm.append("dogNameInput", dogNameInput);
-//     dogForm.append("dogShDescInput", dogShDescInput);
-//     dogForm.append("dogLgDescInput", dogLgDescInput);
-//     dispatch({
-//       type: "ADD_DOG",
-//       payload: dogForm,
-//     });
-//     // console.log('this is the new dog that was created:', dogForm.get("dogNameInput"));
-//     history.push("/admin");
-//   };
+  const updateDog = (event) => {
+    event.preventDefault();
+    dispatch({
+      type: "UPDATE_DOG",
+      payload: dogToUpdate
+    });
+    // console.log('this is the new dog that was created:', dogForm.get("dogNameInput"));
+    history.push("/admin");
+  };
 
   return (
     <form 
-    // onSubmit={addDog}
+    onSubmit={() => updateDog(event)}
     >
       <Box sx={{ m: 5, alignContent: "center" }}>
         <Typography variant="h3">Update Dog</Typography>
@@ -96,7 +116,7 @@ export default function UpdateDog() {
                 label="Dog's Short Description"
                 value={dogToUpdate.dog_sh_descr || ''}
                 placeholder="Enter Dog's Short Description"
-                onChange={(event) => setDogShDescInput(event.target.value)}
+                onChange={(event) => handleShDescrChange(event.target.value)}
                 style={{ width: 800 }}
               />
             </FormControl>
@@ -113,7 +133,7 @@ export default function UpdateDog() {
                 multiline
                 value={dogToUpdate.dog_lg_descr || ''}
                 placeholder="Enter Dog's Long Description"
-                onChange={(event) => setDogLgDescInput(event.target.value)}
+                onChange={(event) => handleLgDescrChange(event.target.value)}
                 style={{ width: 800 }}
                 rows={6}
               />
@@ -124,15 +144,22 @@ export default function UpdateDog() {
               value={dogToUpdate.dog_url || ''}
               type="file"
               name="dog-image"
-              onChange={(event) => setDogPhotoInput(event.target.files)}
+              onChange={(event) => handlePicURL(event.target.files)}
             />
+
+            <Box sx={{pt:5}}>
+                <CardMedia 
+                component="img"
+                src={dogToUpdate.pic_url}/>
+            </Box>
+
           </Grid>
         </Grid>
         {/* This is the third row of items and it contains the submit and cancel buttons. */}
         <Grid container margin={5}>
           <Grid item xs={12} sm={2}>
             <Button variant="contained" type="submit">
-              Submit Dog
+              Update Dog
             </Button>
           </Grid>
           <Grid item xs={12} sm={2}>

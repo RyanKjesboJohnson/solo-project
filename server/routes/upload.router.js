@@ -33,7 +33,7 @@ router.post("/", cloudinaryUpload.single("image"), async (req, res) => {
         });
 
 //This route updates a dog profile of the ID sent over in the params
-router.put('/:id', (req, res) => {
+router.put('/', cloudinaryUpload.single("image"), async (req, res) => {
   console.log(req.body);
   const updateDogQuery = `
     UPDATE "dog_profiles" 
@@ -49,7 +49,7 @@ router.put('/:id', (req, res) => {
     req.body.dog_sh_descr,
     req.body.dog_lg_descr,
     req.body.pic_url,
-    Number(req.params.id)
+    req.body.id
 ]
   pool.query(updateDogQuery, updateDogValues)
     .then(result => {

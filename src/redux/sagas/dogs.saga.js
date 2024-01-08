@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { takeLatest } from "redux-saga/effects";
 import { put } from "redux-saga/effects";
 
@@ -44,7 +45,7 @@ function* fetchAllDogs() {
       type: 'SET_DOGS',
       payload: dogsResponse.data
       });
-      console.log(dogsResponse.data);
+      // console.log(dogsResponse.data);
     } catch (error) {
       console.log('fetchAllDogs error:', error);
   }
@@ -65,24 +66,30 @@ function* fetchDog(dogID) {
   }
 }
 
-// function* updateDog(action) {
-//   try {
-//     const response = yield axios({
-//       method: "PUT",
-//       url: `/api/dogs/${dogID}`,
-
-//     });
-    
-//   }
-
-// }
-
+//This saga function updates a particular dog
+//This function originates from the updateDog component
+function* updateDog(action){
+  try {
+    const response = yield axios({
+      method: "PUT",
+      url: "api/upload",
+      data: action.payload
+    });
+    yield put({
+      type: 'FETCH_ALL_DOGS'
+    })
+    // yield console.log(action.payload);
+  } catch(error) {
+    console.log('updateDog error:', error);
+  }
+}
 
 function* dogsSaga() {
     yield takeLatest('FETCH_ALL_DOGS', fetchAllDogs),
     yield takeLatest('FETCH_DOG', fetchDog)
     yield takeLatest('DELETE_DOG', deleteDog),
-    yield takeLatest('ADD_DOG', addDog)
+    yield takeLatest('ADD_DOG', addDog),
+    yield takeLatest('UPDATE_DOG', updateDog)
   }
 
 export default dogsSaga;
