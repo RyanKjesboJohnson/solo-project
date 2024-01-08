@@ -19,6 +19,7 @@ import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
 import AddEditIcon from '@mui/icons-material/Edit';
+import Swal from 'sweetalert2'
 
 
 //This function is opened from the admin page to add a new dog.
@@ -64,10 +65,16 @@ export default function UpdateDog() {
     })
   }
 
-  const handlePicURL = (newPicURL) => {
-    dispatch({
-        type: 'UPDATE_NAME_URL',
-        payload: newPicURL
+  const handlePicURLEditClick = (event) => {
+    Swal.fire({
+        title: "Do you want to save this form before editing the photo?",
+        showCancelButton: true,
+        confirmButtonText: 'Save & Edit Photo'
+    }).then((result) => {
+        if (result.isConfirmed){
+            updateDog;
+            history.push(`/editDogPic/${dogToUpdate.id}`)
+        }
     })
   }
 
@@ -156,7 +163,7 @@ export default function UpdateDog() {
                 <CardActions>
                     <IconButton
                         aria-label="Edit Photo"
-                        onClick={()=>console.log("this works give praise")}>
+                        onClick={()=>handlePicURLEditClick()}>
                         <EditIcon />
                     </IconButton>
                 </CardActions>

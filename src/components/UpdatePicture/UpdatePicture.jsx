@@ -1,11 +1,15 @@
-export default function UpdatePicture(){
+import { TextField } from "@mui/material"
+
+export default function UpdatePicture(dogToUpdate){
    
    
-   return( <TextField
+   return( 
+   <TextField
     value={dogToUpdate.dog_url || ''}
     type="file"
     name="dog-image"
-    onChange={(event) => handlePicURL(event.target.files)}
-  />)
+    // onChange={(event) => handlePicURL(event.target.files)}
+  />
+  )
 
 }
