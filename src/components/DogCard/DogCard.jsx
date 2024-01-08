@@ -22,8 +22,8 @@ export default function DogCard(dogObject) {
     const id = open ? 'simple-popover' : undefined;
 
     return (
-    <Grid item>
-        <Card sx={{ minWidth:350, maxWidth: 350 }} key={dog.id}>
+    <Grid key={dog.id} item xs={12} sm={6} md={4} lg={2}>
+        <Card sx={{ minWidth:350, maxWidth: 500 }}>
             <CardActionArea>
                 <CardMedia
                     component="img"

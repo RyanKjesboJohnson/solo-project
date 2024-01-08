@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import DogCard from "../DogCard/DogCard";
+import Box from "@mui/material";
 
 //This function makes up the Meet our Dogs profile screen.
 //It uses useEffect to trigger the FETCH_ALL_DOGS saga.
@@ -20,10 +21,11 @@ export default function DogProfiles () {
 
 
     return(
-        <Grid container spacing={5} sx={{ flexGrow: 1 }}>
+        <Grid container sx={{ display: 'flex', justifyContent: 'space-evenly'}}>
         {dogsArray.map(dog => 
             <DogCard dogObject={dog} />
             )}
         </Grid>
+
     )
 }

@@ -4,15 +4,22 @@ import {
   Grid,
   Typography,
   Box,
+  Card,
   FormControl,
   OutlinedInput,
   TextField,
   CardMedia,
+  CardActions,
+  IconButton,
+  CardContent,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import EditIcon from '@mui/icons-material/Edit';
+import AddEditIcon from '@mui/icons-material/Edit';
+
 
 //This function is opened from the admin page to add a new dog.
 //The function starts with local state creation.
@@ -100,8 +107,8 @@ export default function UpdateDog() {
         <Grid container spacing={1} margin={5}>
           <Grid item xs={12} sm={5}>
             <FormControl>
-              <OutlinedInput
-                id="dogName"
+            <TextField
+                id="outlined"
                 label="Dog's Name"
                 value={dogToUpdate.dog_name || ''}
                 onChange={(event) => handleNameChange(event.target.value)}
@@ -111,8 +118,8 @@ export default function UpdateDog() {
           </Grid>
           <Grid item xs={12} sm={7}>
             <FormControl>
-              <OutlinedInput
-                id="dogShDesc"
+            <TextField
+                id="outlined"
                 label="Dog's Short Description"
                 value={dogToUpdate.dog_sh_descr || ''}
                 placeholder="Enter Dog's Short Description"
@@ -125,10 +132,10 @@ export default function UpdateDog() {
         <Grid container spacing={1} margin={5}>
           {/* This is the second row of items.
                 It contains the long dog description and picture upload. */}
-          <Grid item xs={12} sm={9}>
+          <Grid item xs={12} sm={7}>
             <FormControl>
-              <OutlinedInput
-                id="dogLgDesc"
+              <TextField
+                id="outlined"
                 label="Dog's Long Description"
                 multiline
                 value={dogToUpdate.dog_lg_descr || ''}
@@ -139,19 +146,21 @@ export default function UpdateDog() {
               />
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={3} justifyContent="center">
-            <TextField
-              value={dogToUpdate.dog_url || ''}
-              type="file"
-              name="dog-image"
-              onChange={(event) => handlePicURL(event.target.files)}
-            />
-
-            <Box sx={{pt:5}}>
-                <CardMedia 
-                component="img"
-                src={dogToUpdate.pic_url}/>
-            </Box>
+          <Grid item xs={12} sm={5} justifyContent="center">
+            <Card sx={{width: 200, borderRadius: 2}}>
+                <CardContent>
+                    <CardMedia 
+                    component="img"
+                    src={dogToUpdate.pic_url}/>
+                </CardContent>
+                <CardActions>
+                    <IconButton
+                        aria-label="Edit Photo"
+                        onClick={()=>console.log("this works give praise")}>
+                        <EditIcon />
+                    </IconButton>
+                </CardActions>
+            </Card>
 
           </Grid>
         </Grid>
