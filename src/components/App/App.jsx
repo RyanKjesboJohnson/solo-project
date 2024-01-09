@@ -23,6 +23,8 @@ import DogProfiles from '../DogsProfiles/DogProfiles';
 import AdminPage from '../AdminPage/AdminPage';
 import './App.css';
 import AddDog from '../AddDog/AddDog';
+import UpdateDog from '../UpdateDog/UpdateDog';
+import UpdatePicture from '../UpdatePicture/UpdatePicture';
 
 function App() {
   const dispatch = useDispatch();
@@ -84,6 +86,23 @@ function App() {
           >
             <AddDog />
           </ProtectedRoute>
+          
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/editDog/:id"
+          >
+            <UpdateDog />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/editDogPic/:id"
+          >
+            <UpdatePicture />
+          </ProtectedRoute>
+
           <Route
             exact
             path="/login"
