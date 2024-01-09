@@ -1,4 +1,3 @@
-import { Image, Padding } from "@mui/icons-material";
 import {
   Button,
   Grid,
