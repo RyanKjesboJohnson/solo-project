@@ -34,23 +34,26 @@ router.post("/", cloudinaryUpload.single("image"), async (req, res) => {
 
 //This route updates a dog profile of the ID sent over in the params
 router.put('/', cloudinaryUpload.single("image"), async (req, res) => {
-  console.log(req.body);
+  let imageUrl = '';
+  if (req.file){imageUrl = req.file.path} else {imageUrl=req.body.pic_url};
+  console.log(imageUrl);
   const updateDogQuery = `
-    UPDATE "dog_profiles" 
+    UPDATE dog_profiles
     SET 
-    "dog_name" = $1, 
-    "dog_sh_descr" = $2, 
-    "dog_lg_descr" = $3, 
-    "pic_url" = $4
-  WHERE "id" = $5
+    pic_url = $1,
+    dog_name = $2, 
+    dog_sh_descr = $3, 
+    dog_lg_descr = $4 
+  WHERE id = $5;
   `;
   const updateDogValues = [
-    req.body.dog_name,
-    req.body.dog_sh_descr,
-    req.body.dog_lg_descr,
-    req.body.pic_url,
-    req.body.id
+    imageUrl,
+    req.body.dogName,
+    req.body.dogShDescr,
+    req.body.dogLgDescr,
+    req.body.dogId
 ]
+  console.log(updateDogValues);
   pool.query(updateDogQuery, updateDogValues)
     .then(result => {
       console.log('Dog updated')

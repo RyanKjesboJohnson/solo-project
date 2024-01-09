@@ -31,7 +31,11 @@ export default function AdminPage () {
     return(
         <>
             <Box>
-                <Button onClick={() => {history.push('/addDog')}}>
+                <Button 
+                variant="contained" 
+                size="large"
+                sx={{marginLeft: 10}}
+                onClick={() => {history.push('/addDog')}}>
                     Add New Dog
                 </Button>
             </Box>

@@ -6,19 +6,17 @@ import {
   Box,
   Card,
   FormControl,
-  OutlinedInput,
   TextField,
   CardMedia,
   CardActions,
   IconButton,
   CardContent,
 } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
-import AddEditIcon from '@mui/icons-material/Edit';
 import Swal from 'sweetalert2'
 
 
@@ -30,7 +28,6 @@ import Swal from 'sweetalert2'
 export default function UpdateDog() {
   //These make constants of various methods
   const params = useParams();
-  const dogForm = new FormData();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -41,7 +38,7 @@ export default function UpdateDog() {
       type: "FETCH_DOG",
       payload: params,
     });
-    console.log(dogToUpdate);
+    console.log("this is the dog we are updating", dogToUpdate);
   }, [params]);
 
   const handleNameChange = (newDogName) => {
@@ -72,7 +69,7 @@ export default function UpdateDog() {
         confirmButtonText: 'Save & Edit Photo'
     }).then((result) => {
         if (result.isConfirmed){
-            updateDog;
+            updateDog();
             history.push(`/editDogPic/${dogToUpdate.id}`)
         }
     })
@@ -83,7 +80,6 @@ export default function UpdateDog() {
   //Second, it sends dogForm to the saga function.
   //Third, it routes the user back to the admin page.
   const updateDog = (event) => {
-    event.preventDefault();
     dispatch({
       type: "UPDATE_DOG",
       payload: dogToUpdate

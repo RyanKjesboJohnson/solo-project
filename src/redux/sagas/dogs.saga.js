@@ -70,15 +70,18 @@ function* fetchDog(dogID) {
 //This function originates from the updateDog component
 function* updateDog(action){
   try {
+    // const headers = {
+    //   'content-type' : 'multipart/form-data'
+    // }
     const response = yield axios({
       method: "PUT",
       url: "api/upload",
+      // headers: headers,
       data: action.payload
     });
     yield put({
       type: 'FETCH_ALL_DOGS'
     })
-    // yield console.log(action.payload);
   } catch(error) {
     console.log('updateDog error:', error);
   }

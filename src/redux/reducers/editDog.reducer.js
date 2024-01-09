@@ -10,9 +10,6 @@ const editDogReducer = (state = {}, action) => {
     } else if (action.type === 'UPDATE_DOG_LG_DESC'){
         const newLgDescr = action.payload
         return {...state, dog_lg_descr: newLgDescr}
-    } else if (action.type === 'UPDATE_IMAGE_URL'){
-        const newImageURL = action.payload
-        return {...state, pic_url: newImageURL}
     } 
     return state;
 }

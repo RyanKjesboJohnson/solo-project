@@ -30,6 +30,7 @@ export default function AddDog() {
         dogForm.append("dogNameInput", dogNameInput);
         dogForm.append("dogShDescInput", dogShDescInput);
         dogForm.append("dogLgDescInput", dogLgDescInput);
+        console.log("this is the dogform for adding dog:", dogForm.values());
         dispatch({
             type: 'ADD_DOG',
             payload: dogForm
@@ -49,11 +50,10 @@ export default function AddDog() {
             <Grid container spacing={1} margin={5}>
                 <Grid item xs={12} sm={5}>
                     <FormControl>
-                        <OutlinedInput
-                        id="dogName"
+                        <TextField
+                        id="outlined"
                         label="Dog's Name"
                         value={dogNameInput}
-                        placeholder="Enter Dog's Name"
                         onChange={(event) => setDogNameInput(event.target.value)}
                         style={{width:500}}
                         />
@@ -61,11 +61,10 @@ export default function AddDog() {
                 </Grid>
                 <Grid item xs={12} sm={7}>
                     <FormControl>
-                        <OutlinedInput
-                        id="dogShDesc"
+                        <TextField
+                        id="outlined"
                         label="Dog's Short Description"
                         value={dogShDescInput}
-                        placeholder="Enter Dog's Short Description"
                         onChange={(event) => setDogShDescInput(event.target.value)}
                         style={{width:800}}
                         />
@@ -77,12 +76,11 @@ export default function AddDog() {
                 It contains the long dog description and picture upload. */}
                 <Grid item xs={12} sm={9}>
                     <FormControl>
-                        <OutlinedInput
-                        id="dogLgDesc"
+                        <TextField
+                        id="outlined"
                         label="Dog's Long Description"
                         multiline
                         value={dogLgDescInput}
-                        placeholder="Enter Dog's Long Description"
                         onChange={(event) => setDogLgDescInput(event.target.value)}
                         style={{width:800}}
                         rows={6}
