@@ -16,9 +16,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import EditIcon from '@mui/icons-material/Edit';
-import Swal from 'sweetalert2'
-
+import EditIcon from "@mui/icons-material/Edit";
+import Swal from "sweetalert2";
 
 //This function is opened from the admin page to add a new dog.
 //The function starts with local state creation.
@@ -42,37 +41,37 @@ export default function UpdateDog() {
 
   const handleNameChange = (newDogName) => {
     dispatch({
-        type: 'UPDATE_DOG_NAME',
-        payload: newDogName
-    })
-  }
+      type: "UPDATE_DOG_NAME",
+      payload: newDogName,
+    });
+  };
 
   const handleShDescrChange = (newShDescr) => {
     dispatch({
-        type: 'UPDATE_DOG_SH_DESC',
-        payload: newShDescr
-    })
-  }
+      type: "UPDATE_DOG_SH_DESC",
+      payload: newShDescr,
+    });
+  };
 
   const handleLgDescrChange = (newLgDescr) => {
     dispatch({
-        type: 'UPDATE_DOG_LG_DESC',
-        payload: newLgDescr
-    })
-  }
+      type: "UPDATE_DOG_LG_DESC",
+      payload: newLgDescr,
+    });
+  };
 
   const handlePicURLEditClick = (event) => {
     Swal.fire({
-        title: "Do you want to save this form before editing the photo?",
-        showCancelButton: true,
-        confirmButtonText: 'Save & Edit Photo'
+      title: "Do you want to save this form before editing the photo?",
+      showCancelButton: true,
+      confirmButtonText: "Save & Edit Photo",
     }).then((result) => {
-        if (result.isConfirmed){
-            updateDog(event);
-            history.push(`/editDogPic/${dogToUpdate.id}`)
-        }
-    })
-  }
+      if (result.isConfirmed) {
+        updateDog(event);
+        history.push(`/editDogPic/${dogToUpdate.id}`);
+      }
+    });
+  };
 
   //This is the event that triggers creating a new dog.
   //First, it appends each local state to the dogForm.
@@ -83,7 +82,7 @@ export default function UpdateDog() {
     console.log("this is the dog when we click update:", dogToUpdate);
     dispatch({
       type: "UPDATE_DOG",
-      payload: dogToUpdate
+      payload: dogToUpdate,
     });
     // console.log('this is the new dog that was created:', dogForm.get("dogNameInput"));
     history.push("/admin");
@@ -109,10 +108,10 @@ export default function UpdateDog() {
         <Grid container spacing={1} margin={5}>
           <Grid item xs={12} sm={5}>
             <FormControl>
-            <TextField
+              <TextField
                 id="outlined"
                 label="Dog's Name"
-                value={dogToUpdate.dog_name || ''}
+                value={dogToUpdate.dog_name || ""}
                 onChange={(event) => handleNameChange(event.target.value)}
                 style={{ width: 500 }}
               />
@@ -120,10 +119,10 @@ export default function UpdateDog() {
           </Grid>
           <Grid item xs={12} sm={7}>
             <FormControl>
-            <TextField
+              <TextField
                 id="outlined"
                 label="Dog's Short Description"
-                value={dogToUpdate.dog_sh_descr || ''}
+                value={dogToUpdate.dog_sh_descr || ""}
                 placeholder="Enter Dog's Short Description"
                 onChange={(event) => handleShDescrChange(event.target.value)}
                 style={{ width: 800 }}
@@ -140,7 +139,7 @@ export default function UpdateDog() {
                 id="outlined"
                 label="Dog's Long Description"
                 multiline
-                value={dogToUpdate.dog_lg_descr || ''}
+                value={dogToUpdate.dog_lg_descr || ""}
                 placeholder="Enter Dog's Long Description"
                 onChange={(event) => handleLgDescrChange(event.target.value)}
                 style={{ width: 800 }}
@@ -149,21 +148,19 @@ export default function UpdateDog() {
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={5} justifyContent="center">
-            <Card sx={{width: 200, borderRadius: 2}}>
-                <CardContent>
-                    <CardMedia 
-                    component="img"
-                    src={dogToUpdate.pic_url}/>
-                </CardContent>
-                <CardActions>
-                    <IconButton
-                        aria-label="Edit Photo"
-                        onClick={()=>handlePicURLEditClick(event)}>
-                        <EditIcon />
-                    </IconButton>
-                </CardActions>
+            <Card sx={{ width: 200, borderRadius: 2 }}>
+              <CardContent>
+                <CardMedia component="img" src={dogToUpdate.pic_url} />
+              </CardContent>
+              <CardActions>
+                <IconButton
+                  aria-label="Edit Photo"
+                  onClick={() => handlePicURLEditClick(event)}
+                >
+                  <EditIcon />
+                </IconButton>
+              </CardActions>
             </Card>
-
           </Grid>
         </Grid>
         {/* This is the third row of items and it contains the submit and cancel buttons. */}
