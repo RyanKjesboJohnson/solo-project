@@ -38,7 +38,6 @@ export default function UpdateDog() {
       type: "FETCH_DOG",
       payload: params,
     });
-    console.log("this is the dog we are updating", dogToUpdate);
   }, [params]);
 
   const handleNameChange = (newDogName) => {
@@ -69,7 +68,7 @@ export default function UpdateDog() {
         confirmButtonText: 'Save & Edit Photo'
     }).then((result) => {
         if (result.isConfirmed){
-            updateDog();
+            updateDog(event);
             history.push(`/editDogPic/${dogToUpdate.id}`)
         }
     })
@@ -80,6 +79,8 @@ export default function UpdateDog() {
   //Second, it sends dogForm to the saga function.
   //Third, it routes the user back to the admin page.
   const updateDog = (event) => {
+    event.preventDefault();
+    console.log("this is the dog when we click update:", dogToUpdate);
     dispatch({
       type: "UPDATE_DOG",
       payload: dogToUpdate
@@ -89,9 +90,7 @@ export default function UpdateDog() {
   };
 
   return (
-    <form 
-    onSubmit={() => updateDog(event)}
-    >
+    <form onSubmit={() => updateDog(event)}>
       <Box sx={{ m: 5, alignContent: "center" }}>
         <Typography variant="h3">Update Dog</Typography>
       </Box>
@@ -159,7 +158,7 @@ export default function UpdateDog() {
                 <CardActions>
                     <IconButton
                         aria-label="Edit Photo"
-                        onClick={()=>handlePicURLEditClick()}>
+                        onClick={()=>handlePicURLEditClick(event)}>
                         <EditIcon />
                     </IconButton>
                 </CardActions>

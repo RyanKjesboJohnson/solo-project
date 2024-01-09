@@ -36,7 +36,7 @@ router.post("/", cloudinaryUpload.single("image"), async (req, res) => {
 router.put('/', cloudinaryUpload.single("image"), async (req, res) => {
   let imageUrl = '';
   if (req.file){imageUrl = req.file.path} else {imageUrl=req.body.pic_url};
-  console.log(imageUrl);
+  console.log(req.body);
   const updateDogQuery = `
     UPDATE dog_profiles
     SET 
@@ -48,10 +48,10 @@ router.put('/', cloudinaryUpload.single("image"), async (req, res) => {
   `;
   const updateDogValues = [
     imageUrl,
-    req.body.dogName,
-    req.body.dogShDescr,
-    req.body.dogLgDescr,
-    req.body.dogId
+    req.body.dog_name,
+    req.body.dog_sh_descr,
+    req.body.dog_lg_descr,
+    req.body.id
 ]
   console.log(updateDogValues);
   pool.query(updateDogQuery, updateDogValues)

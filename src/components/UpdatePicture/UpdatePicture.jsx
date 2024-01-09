@@ -16,7 +16,8 @@ export default function UpdatePicture(){
     const dogToUpdate = useSelector((store) => store.editDogReducer);
     
     useEffect(() => {
-      dispatch({
+        dispatch({ type: 'CLEAR_DOG' })
+        dispatch({
         type: "FETCH_DOG",
         payload: params,
       });
@@ -25,10 +26,10 @@ export default function UpdatePicture(){
     const updateDogPic = (event) => {
         event.preventDefault();
         dogForm.append("image", newDogPic);
-        dogForm.append("dogName", dogToUpdate.dog_name);
-        dogForm.append("dogShDescr", dogToUpdate.dog_sh_descr);
-        dogForm.append("dogLgDescr", dogToUpdate.dog_lg_descr);
-        dogForm.append("dogId", dogToUpdate.id);
+        dogForm.append("dog_name", dogToUpdate.dog_name);
+        dogForm.append("dog_sh_descr", dogToUpdate.dog_sh_descr);
+        dogForm.append("dog_lg_descr", dogToUpdate.dog_lg_descr);
+        dogForm.append("id", dogToUpdate.id);
         console.log("This is the dogform item:", dogForm.values());
         dispatch({
           type: "UPDATE_DOG",
