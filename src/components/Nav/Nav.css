@@ -1,12 +1,13 @@
 .nav {
   /* flex box layout */
   display: flex;
-  justify-content: space-between;
+  justify-content: justify;
   align-items: center;
 
   margin: 0 0 30px;
   background-color: #7ed957;
   overflow: hidden;
+  opacity: 0.8;
 }
 
 .nav a {
