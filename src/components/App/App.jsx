@@ -27,7 +27,6 @@ import UpdatePicture from '../UpdatePicture/UpdatePicture';
 
 function App() {
   const dispatch = useDispatch();
-
   const user = useSelector(store => store.user);
 
   useEffect(() => {
