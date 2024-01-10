@@ -20,13 +20,18 @@ export default function AdminPage() {
   useEffect(() => {
     dispatch({ type: "FETCH_ALL_DOGS" });
   }, []);
-
   const dogs = useSelector((store) => store.dogsReducer);
+
+  //The handle delete is added to each dog profile listed
+  //The delete sends an id to the saga function, and then update the dogsReducer
   const handleDelete = (id) => {
     dispatch({ type: "DELETE_DOG", payload: id });
     dispatch({ type: "FETCH_ALL_DOGS" });
   };
 
+  //The first item in the UI is a button for adding a new dog
+  //Then there is a table element that lists all dogs in the dogsReducer
+  //Each dog item has the option to delete or edit the dog profile
   return (
     <>
       <Box>
