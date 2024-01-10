@@ -19,7 +19,7 @@ function LandingPage() {
 
   return (
     <Container fixed>
-      <Typography variant="h2">{heading}</Typography>
+      <Typography variant="h2"></Typography>
       <div className="container">
         <img src="/images/milo_photo.jpeg" height={900} />
         <button onClick={meetOurDogs}>Meet Our Dogs</button>
