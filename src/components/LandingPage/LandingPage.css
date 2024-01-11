@@ -1,5 +1,5 @@
 .container {
-  position: center;
+  text-align: center;
   width: 60%;
 
 }
@@ -7,7 +7,6 @@
 /* Make the image responsive */
 .container img {
   width: 100%;
-  height: block;
 }
 
 /* Style the button and place it in the middle of the container/image */

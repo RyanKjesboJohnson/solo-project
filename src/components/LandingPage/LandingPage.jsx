@@ -31,6 +31,7 @@ function LandingPage() {
       pagination: {clickable:true},
       autoplay: {delay:4000},
       slidesPerView: 1,
+      centeredSlides: true,
       on: {
         init: function () {
           console.log("swiper loaded");
@@ -62,21 +63,17 @@ function LandingPage() {
 
       <swiper-container init="false" ref={swiperRef}>
         <swiper-slide>
-            <img src="/images/milo_photo.jpeg" />
+            <img src="/images/milo_photo.jpg" />
             <button className="slide1Button" onClick={meetOurDogs}>Meet Our Dogs</button>
         </swiper-slide>
         <swiper-slide>
-          <div className="container"> 
             <img src="/images/dog_nose_blankets.jpg" />
             <button className="slide2Button" onClick ={ () => {
               location.href="https://www.paypal.com/donate/?hosted_button_id=EAQUUJAADDPCA"}}
               >Donate Today</button>
-            </div> 
         </swiper-slide>
         <swiper-slide>
-          <div className="container">
-            <img src="/images/All_Dog_Logo.jpg" />
-          </div>
+            <img src="/images/zuzu.jpg" />
         </swiper-slide>
       </swiper-container>
     </Container>
