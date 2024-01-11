@@ -22,12 +22,12 @@ export default function DogCard(dogObject) {
     const id = open ? 'simple-popover' : undefined;
 
     return (
-    <Grid key={dog.id} item xs={12} sm={6} md={4} lg={2}>
+    <Grid key={dog.id} item xs={12} sm={6} md={6} lg={3}>
         <Card sx={{ minWidth:350, maxWidth: 500 }}>
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="140"
+                    height="400"
                     image={dog.pic_url}
                     alt={dog.dog_name}
                 />
@@ -40,7 +40,7 @@ export default function DogCard(dogObject) {
             </Typography>
             </CardContent>
             </CardActionArea>
-            <Button sx={{bgcolor: '#0097b2',}} aria-describedby={id} variant="contained" onClick={handleClick}>
+            <Button sx={{bgcolor: '#0097b2'}} aria-describedby={id} variant="contained" onClick={handleClick}>
                 Meet Me
             </Button>
             <Popover

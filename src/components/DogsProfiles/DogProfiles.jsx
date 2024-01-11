@@ -21,7 +21,7 @@ export default function DogProfiles () {
 
 
     return(
-        <Grid container sx={{ display: 'flex', justifyContent: 'space-evenly'}}>
+        <Grid container columns={{ xs: 4, sm: 6, md: 8, lg: 12}} spacing={2} sx={{ display: 'flex', justifyContent: 'space-evenly'}}>
         {dogsArray.map(dog => 
             <DogCard dogObject={dog} />
             )}
