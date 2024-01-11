@@ -14,15 +14,15 @@ function LandingPage() {
   const swiperRef = useRef(null);
   const history = useHistory();
   
+  //This onEffect is used for the Swiper carousel function on the landing screen
+  //https://swiperjs.com/swiper-api#parameters
   useEffect(() => {
     // Register Swiper web component
     register();
-
     // Add event listener
     swiperRef.current.addEventListener('swiperslidechange', (e) => {
       console.log(e.detail);
     });
-
     // Object with parameters
     const params = {
       // or pass it in on
@@ -36,14 +36,10 @@ function LandingPage() {
         init: function () {
           console.log("swiper loaded");
         },
-
       },
-      
     };
-
     // Assign it to swiper element
     Object.assign(swiperRef.current, params);
-
     // initialize swiper
     swiperRef.current.initialize();
   }, []);
@@ -58,25 +54,29 @@ function LandingPage() {
   };
 
   return (
+    <>
     <Container fixed>
-      <Typography variant="h2"></Typography>
-
       <swiper-container init="false" ref={swiperRef}>
         <swiper-slide>
-            <img src="/images/milo_photo.jpg" />
+            <img src="/images/milo_pic.png" />
             <button className="slide1Button" onClick={meetOurDogs}>Meet Our Dogs</button>
         </swiper-slide>
         <swiper-slide>
-            <img src="/images/dog_nose_blankets.jpg" />
+            <img src="/images/dog_nose.png" />
             <button className="slide2Button" onClick ={ () => {
               location.href="https://www.paypal.com/donate/?hosted_button_id=EAQUUJAADDPCA"}}
               >Donate Today</button>
         </swiper-slide>
         <swiper-slide>
-            <img src="/images/zuzu.jpg" />
+            <img src="/images/zuzu_edited.png" />
+            <button className="slide1Button">Foster with Us</button>
         </swiper-slide>
       </swiper-container>
     </Container>
+    <div className="banner-container">
+      <Typography variant="h3">Finding Life-Long Homes for Rescued Dogs</Typography>
+    </div>
+    </>
   );
 }
 

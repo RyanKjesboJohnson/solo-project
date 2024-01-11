@@ -1,7 +1,17 @@
 .container {
   text-align: center;
-  width: 60%;
+  justify-content: center;
+  width: 100%;
 
+}
+
+.banner-container {
+  margin-top: 30px;
+  background-color: black;
+  opacity: .5;
+  color: white;
+  padding: 50px;
+  text-align: center;
 }
 
 /* Make the image responsive */
@@ -13,7 +23,7 @@
 .slide1Button {
   position: absolute;
   top: 50%;
-  left: 25%;
+  left: 20%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   background-color: #0097b2;
@@ -27,8 +37,8 @@
 
 .slide2Button {
   position: absolute;
-  top: 75%;
-  left: 30%;
+  top: 88%;
+  left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   background-color: #0097b2;
