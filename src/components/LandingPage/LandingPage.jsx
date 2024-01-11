@@ -5,7 +5,7 @@ import { Container, Typography } from "@mui/material";
 import { register } from "swiper/element/bundle";
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
-
+import { Pagination } from 'swiper/modules'
 
 //The landing page functions as the first page that guests and users see
 //When a guest clicks meet our dogs button they are navigated to the dogprofiles page
@@ -26,13 +26,16 @@ function LandingPage() {
     // Object with parameters
     const params = {
       // or pass it in on
+      modules: [Pagination],
       navigation: true,
-      pagination: true,
+      pagination: {clickable:true},
+      autoplay: {delay:4000},
       slidesPerView: 1,
       on: {
-        click(s) {
-          console.log(s);
+        init: function () {
+          console.log("swiper loaded");
         },
+
       },
       
     };
@@ -59,10 +62,16 @@ function LandingPage() {
 
       <swiper-container init="false" ref={swiperRef}>
         <swiper-slide>
-
             <img src="/images/milo_photo.jpeg" />
-            <button onClick={meetOurDogs}>Meet Our Dogs</button>
-
+            <button className="slide1Button" onClick={meetOurDogs}>Meet Our Dogs</button>
+        </swiper-slide>
+        <swiper-slide>
+          <div className="container"> 
+            <img src="/images/dog_nose_blankets.jpg" />
+            <button onClick ={ () => {
+              location.href="https://www.paypal.com/donate/?hosted_button_id=EAQUUJAADDPCA"}}
+              >Donate Today</button>
+            </div> 
         </swiper-slide>
         <swiper-slide>
           <div className="container">
