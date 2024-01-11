@@ -68,7 +68,7 @@ function LandingPage() {
         <swiper-slide>
           <div className="container"> 
             <img src="/images/dog_nose_blankets.jpg" />
-            <button onClick ={ () => {
+            <button className="slide2Button" onClick ={ () => {
               location.href="https://www.paypal.com/donate/?hosted_button_id=EAQUUJAADDPCA"}}
               >Donate Today</button>
             </div> 
