@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Box, Button, Popover, Card, CardMedia, CardContent, Grid, Typography, CardActionArea } from '@mui/material';
+import { green } from '@mui/material/colors';
 
 //This function is the display for the individual dog on the meet our dogs page
 //The function is triggered via the DogProfiles function.
@@ -23,26 +24,31 @@ export default function DogCard(dogObject) {
 
     return (
     <Grid key={dog.id} item xs={12} sm={6} md={6} lg={3}>
-        <Card sx={{ minWidth:350, maxWidth: 500 }}>
-            <CardActionArea>
+        <Card className='card-background' sx={{ backgroundColor: 'white', minWidth:350, maxWidth: 500 }}>
+            <CardActionArea className='card-transbox'>
                 <CardMedia
                     component="img"
                     height="400"
                     image={dog.pic_url}
                     alt={dog.dog_name}
                 />
-            <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Box sx={{backgroundColor: green[100]}} >
+            <CardContent >
+                
+            <Typography  gutterBottom variant="h5" component="div">
                 {dog.dog_name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
                 {dog.dog_sh_descr}
             </Typography>
             </CardContent>
-            </CardActionArea>
+            </Box>
+            
+            <Box sx={{backgroundColor: green[100]}}>
             <Button sx={{bgcolor: '#0097b2'}} aria-describedby={id} variant="contained" onClick={handleClick}>
                 Meet Me
             </Button>
+            </Box>
             <Popover
                 id={id}
                 open={open}
@@ -62,6 +68,7 @@ export default function DogCard(dogObject) {
                     <Typography sx={{ p: 2 }}>{dog.dog_lg_descr}</Typography>
                 </Box>
             </Popover>
+            </CardActionArea>
         </Card>
     </Grid>
     )

@@ -100,6 +100,7 @@ export default function AddDog() {
                 onChange={(event) => setDogLgDescInput(event.target.value)}
                 style={{ width: 800 }}
                 rows={6}
+                wrap="hard"
               />
             </FormControl>
           </Grid>
