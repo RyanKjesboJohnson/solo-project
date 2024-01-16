@@ -58,7 +58,7 @@ function LandingPage() {
     <Container fixed>
       <swiper-container init="false" ref={swiperRef}>
         <swiper-slide>
-            <img src="/images/milo_pic.png" />
+            <img src="/images/Milo_pic.png" />
             <button className="slide1Button" onClick={meetOurDogs}>Meet Our Dogs</button>
         </swiper-slide>
         <swiper-slide>
